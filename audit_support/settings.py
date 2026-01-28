@@ -1,5 +1,4 @@
 import pymysql
-
 pymysql.install_as_MySQLdb()
 
 """
@@ -16,13 +15,6 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import sys
-# pysqlite3をsqlite3として使う（XREAの古いsqliteを回避する）
-try:
-    __import__('pysqlite3')
-    sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
-except ImportError:
-    pass
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,7 +29,7 @@ SECRET_KEY = 'django-insecure-1kk_0_ew3u471k3g%*u@=6zmr*)e9+r5nrtjcv67fzhh5%wuf7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ['falcon.s6.xrea.com']   # 開発時用設定
+# ALLOWED_HOSTS = ['ss1.xrea.com', 'falcon.s6.xrea.com']   # 開発時用設定
 ALLOWED_HOSTS = ['*']   # 開発時用設定
 
 
@@ -58,6 +50,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',

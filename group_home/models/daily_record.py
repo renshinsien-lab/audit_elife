@@ -9,8 +9,10 @@ class DailyRecord(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        db_table = 'daily_record'
-        unique_together = ('resident', 'record_date')
+            db_table = 'daily_record'
+            unique_together = ('resident', 'record_date')
+            verbose_name = '日次記録' 
+            verbose_name_plural = '7. サービス実施記録' 
 
 class DailyRecordItem(models.Model):
     daily_record = models.ForeignKey(DailyRecord, on_delete=models.CASCADE, related_name='items')
@@ -27,3 +29,5 @@ class DailyRecordItem(models.Model):
     
     class Meta:
         db_table = 'daily_record_item'
+        verbose_name = '実施詳細'          # 追加
+        verbose_name_plural = '実施詳細'    # 追加

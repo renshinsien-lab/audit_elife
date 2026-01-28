@@ -2,7 +2,7 @@ from django.contrib import admin
 from django import forms
 from .models import (
     Resident, Company, Office, ResidentOffice,
-    DailyRecord, DailyRecordItem,
+    DailyRecord, DailyRecordItem, DailyRecord,
     SupportPlan, SupportPlanRevision, SupportPlanGoal, SupportPlanContent,
     Monitoring
 )

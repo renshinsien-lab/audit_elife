@@ -1,3 +1,4 @@
+# MySQL
 import pymysql
 pymysql.install_as_MySQLdb()
 
@@ -137,7 +138,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = '/audit_support/static/'
+STATIC_URL = '/falcon.s6.xrea.com/audit_support/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -145,9 +146,22 @@ STATIC_URL = '/audit_support/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # 追加推奨
-STATIC_URL = '/audit_support/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
-STATIC_ROOT = BASE_DIR / 'static'
+# --- 修正後（ここをコピペしてください） ---
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# settings.py
-FORCE_SCRIPT_NAME = '/audit_support'
+# 収集元として、プロジェクト直下の 'static' フォルダのみを指定します
+# 'staticfiles' は含めないでください
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+
+FORCE_SCRIPT_NAME = '/falcon.s6.xrea.com/audit_support'
+
+# 共有SSLのドメインを信頼できるオリジンとして登録
+CSRF_TRUSTED_ORIGINS = [
+    'https://ss1.xrea.com',
+]
+
+# プロキシ経由（共有SSL）の通信を正しく判定するための設定
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
